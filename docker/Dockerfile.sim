@@ -1,0 +1,8 @@
+# Fallback: python-can simulator (sim.py)
+FROM python:3.13-slim
+RUN pip install --no-cache-dir python-can==4.*
+WORKDIR /app
+COPY sim.py /app/sim.py
+ENV CAN_IF=can0 PYTHONUNBUFFERED=1
+ENTRYPOINT ["sh", "-c", "exec python3 /app/sim.py -c \"$CAN_IF\" --state /state/hours.json \"$@\"", "--"]
+CMD []

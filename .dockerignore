@@ -1,0 +1,4 @@
+*.tar.gz
+dashboard_screenshot.png
+src/__pycache__
+.env

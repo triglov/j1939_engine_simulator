@@ -1,0 +1,46 @@
+# Volvo Penta J1939 simulator (Node-RED). Uruchom w dystrybucji WSL z NATYWNYM Docker Engine (nie Docker Desktop) – patrz README.
+# 1) ./up-can.sh can0   (albo: ./up-can.sh vcan0)
+# 2) docker compose up -d --build
+# 3) Windows: http://localhost:1880/dashboard
+services:
+  nodered:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vp-j1939-sim:latest
+    container_name: vp-j1939-sim
+    # SocketCAN interfaces (can0/vcan0) are network devices living in the HOST's network namespace.
+    # A container only sees them when it shares that namespace -> host networking is required.
+    # (ports: are ignored in host mode; Node-RED listens directly on host :1880)
+    network_mode: host
+    environment:
+      CAN_IF: ${CAN_IF:-can0}
+      VP_START_HOURS: ${VP_START_HOURS:-1234.5}
+      FLOW_RESET: ${FLOW_RESET:-0}      # 1 = nadpisz /data/flows.json flow z obrazu
+      TZ: Europe/Warsaw
+    volumes:
+      - vp_data:/data                    # flows.json + context/ (motogodziny)
+    restart: unless-stopped
+    logging:                             # bez CAN node loguje błąd na każdą ramkę -> ogranicz rozmiar logów
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  # Zapasowy symulator w Pythonie: docker compose --profile py up sim
+  # (nie uruchamiaj razem z Node-RED na tym samym interfejsie – dwa ECU z SA 0x00)
+  sim:
+    profiles: ["py"]
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.sim
+    image: vp-j1939-sim-py:latest
+    network_mode: host
+    environment:
+      CAN_IF: ${CAN_IF:-can0}
+    command: ${SIM_ARGS:---sweep}
+    volumes:
+      - vp_sim_state:/state
+    restart: "no"
+
+volumes:
+  vp_data:
+  vp_sim_state:
