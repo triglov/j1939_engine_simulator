@@ -1,0 +1,1442 @@
+[
+ {
+  "id": "f0a1000000000001",
+  "type": "tab",
+  "label": "Volvo Penta J1939 sim",
+  "disabled": false,
+  "info": "Symulator silnika J1939 (EEC1/EEC2/ET1/EFL-P1/IC1/LFE/VEP1/AMB/HOURS/DM1) na SocketCAN.",
+  "env": [
+   {
+    "name": "VP_CAN_IF",
+    "value": "$env(\"CAN_IF\") ? $env(\"CAN_IF\") : \"can0\"",
+    "type": "jsonata"
+   }
+  ]
+ },
+ {
+  "id": "f0a1000000000101",
+  "type": "socketcan-config",
+  "z": "f0a1000000000001",
+  "interface": "${VP_CAN_IF}"
+ },
+ {
+  "id": "f0a1000000000102",
+  "type": "ui-base",
+  "name": "Symulator J1939",
+  "path": "/dashboard",
+  "appIcon": "",
+  "includeClientData": true,
+  "acceptsClientConfig": [
+   "ui-notification",
+   "ui-control"
+  ],
+  "showPathInSidebar": false,
+  "headerContent": "page",
+  "navigationStyle": "default",
+  "titleBarStyle": "default",
+  "showReconnectNotification": true,
+  "notificationDisplayTime": 1,
+  "showDisconnectNotification": true,
+  "allowInstall": false
+ },
+ {
+  "id": "f0a1000000000103",
+  "type": "ui-theme",
+  "name": "Default",
+  "colors": {
+   "surface": "#0b3d5c",
+   "primary": "#0d74ce",
+   "bgPage": "#eef2f6",
+   "groupBg": "#ffffff",
+   "groupOutline": "#cccccc"
+  },
+  "sizes": {
+   "density": "default",
+   "pagePadding": "12px",
+   "groupGap": "12px",
+   "groupBorderRadius": "4px",
+   "widgetGap": "12px"
+  }
+ },
+ {
+  "id": "f0a1000000000104",
+  "type": "ui-page",
+  "name": "Silnik",
+  "ui": "f0a1000000000102",
+  "path": "/engine",
+  "icon": "engine",
+  "layout": "grid",
+  "theme": "f0a1000000000103",
+  "breakpoints": [
+   {
+    "name": "Default",
+    "px": 0,
+    "cols": 3
+   },
+   {
+    "name": "Tablet",
+    "px": 576,
+    "cols": 6
+   },
+   {
+    "name": "Small Desktop",
+    "px": 768,
+    "cols": 9
+   },
+   {
+    "name": "Desktop",
+    "px": 1024,
+    "cols": 12
+   }
+  ],
+  "order": 1,
+  "className": "",
+  "visible": "true",
+  "disabled": "false"
+ },
+ {
+  "id": "f0a1000000000105",
+  "type": "ui-group",
+  "name": "Sterowanie",
+  "page": "f0a1000000000104",
+  "width": "4",
+  "height": "1",
+  "order": 1,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "f0a1000000000106",
+  "type": "ui-group",
+  "name": "Podgląd",
+  "page": "f0a1000000000104",
+  "width": "3",
+  "height": "1",
+  "order": 2,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "f0a1000000000107",
+  "type": "ui-group",
+  "name": "Wysyłane wartości",
+  "page": "f0a1000000000104",
+  "width": "6",
+  "height": "1",
+  "order": 3,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "f0a1000000000108",
+  "type": "ui-group",
+  "name": "Ręczne wartości (tryb ręczny)",
+  "page": "f0a1000000000104",
+  "width": "6",
+  "height": "1",
+  "order": 4,
+  "showTitle": true,
+  "className": "",
+  "visible": "true",
+  "disabled": "false",
+  "groupType": "default"
+ },
+ {
+  "id": "f0a100000000010a",
+  "type": "ui-switch",
+  "z": "f0a1000000000001",
+  "name": "Nadawanie na CAN (zapłon)",
+  "label": "Nadawanie na CAN (zapłon)",
+  "group": "f0a1000000000105",
+  "order": 1,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "decouple": false,
+  "topic": "tx",
+  "topicType": "str",
+  "style": "",
+  "className": "",
+  "layout": "row-spread",
+  "clickableArea": "switch",
+  "onvalue": "true",
+  "onvalueType": "bool",
+  "onicon": "",
+  "oncolor": "",
+  "offvalue": "false",
+  "offvalueType": "bool",
+  "officon": "",
+  "offcolor": "",
+  "x": 300,
+  "y": 120,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000010b",
+  "type": "ui-switch",
+  "z": "f0a1000000000001",
+  "name": "Silnik pracuje",
+  "label": "Silnik pracuje",
+  "group": "f0a1000000000105",
+  "order": 2,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "decouple": false,
+  "topic": "engineOn",
+  "topicType": "str",
+  "style": "",
+  "className": "",
+  "layout": "row-spread",
+  "clickableArea": "switch",
+  "onvalue": "true",
+  "onvalueType": "bool",
+  "onicon": "",
+  "oncolor": "",
+  "offvalue": "false",
+  "offvalueType": "bool",
+  "officon": "",
+  "offcolor": "",
+  "x": 300,
+  "y": 160,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000010c",
+  "type": "ui-switch",
+  "z": "f0a1000000000001",
+  "name": "Tryb realistyczny (z RPM/obciążenia)",
+  "label": "Tryb realistyczny (z RPM/obciążenia)",
+  "group": "f0a1000000000105",
+  "order": 3,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "decouple": false,
+  "topic": "realistic",
+  "topicType": "str",
+  "style": "",
+  "className": "",
+  "layout": "row-spread",
+  "clickableArea": "switch",
+  "onvalue": "true",
+  "onvalueType": "bool",
+  "onicon": "",
+  "oncolor": "",
+  "offvalue": "false",
+  "offvalueType": "bool",
+  "officon": "",
+  "offcolor": "",
+  "x": 300,
+  "y": 200,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000010d",
+  "type": "ui-switch",
+  "z": "f0a1000000000001",
+  "name": "Auto sweep RPM (700↔3800, 60 s)",
+  "label": "Auto sweep RPM (700↔3800, 60 s)",
+  "group": "f0a1000000000105",
+  "order": 4,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "decouple": false,
+  "topic": "sweep",
+  "topicType": "str",
+  "style": "",
+  "className": "",
+  "layout": "row-spread",
+  "clickableArea": "switch",
+  "onvalue": "true",
+  "onvalueType": "bool",
+  "onicon": "",
+  "oncolor": "",
+  "offvalue": "false",
+  "offvalueType": "bool",
+  "officon": "",
+  "offcolor": "",
+  "x": 300,
+  "y": 240,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000010e",
+  "type": "ui-switch",
+  "z": "f0a1000000000001",
+  "name": "Wstrzyknij błąd DM1: SPN 100 FMI 1",
+  "label": "Wstrzyknij błąd DM1: SPN 100 FMI 1",
+  "group": "f0a1000000000105",
+  "order": 5,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "decouple": false,
+  "topic": "fault",
+  "topicType": "str",
+  "style": "",
+  "className": "",
+  "layout": "row-spread",
+  "clickableArea": "switch",
+  "onvalue": "true",
+  "onvalueType": "bool",
+  "onicon": "",
+  "oncolor": "",
+  "offvalue": "false",
+  "offvalueType": "bool",
+  "officon": "",
+  "offcolor": "",
+  "x": 300,
+  "y": 280,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000010f",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000105",
+  "name": "Obroty [rpm]",
+  "label": "Obroty [rpm]",
+  "tooltip": "",
+  "order": 6,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "rpm",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 4000,
+  "step": 10,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 320,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000110",
+  "type": "ui-number-input",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000105",
+  "name": "Ustaw motogodziny",
+  "label": "Ustaw motogodziny [h]",
+  "order": 7,
+  "width": 0,
+  "height": 0,
+  "topic": "setHours",
+  "topicType": "str",
+  "min": 0,
+  "max": 100000,
+  "step": 0.1,
+  "tooltip": "",
+  "passthru": false,
+  "sendOnDelay": false,
+  "sendOnBlur": true,
+  "sendOnEnter": true,
+  "className": "",
+  "clearable": false,
+  "icon": "",
+  "iconPosition": "left",
+  "iconInnerPosition": "inside",
+  "spinner": "default",
+  "x": 300,
+  "y": 360,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000111",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Obciążenie [%] (SPN 92/513)",
+  "label": "Obciążenie [%] (SPN 92/513)",
+  "tooltip": "",
+  "order": 1,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "load",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 125,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 400,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000112",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Pedał/manetka [%] (SPN 91)",
+  "label": "Pedał/manetka [%] (SPN 91)",
+  "tooltip": "",
+  "order": 2,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "pedal",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 440,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000113",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. płynu chł. [°C] (SPN 110)",
+  "label": "Temp. płynu chł. [°C] (SPN 110)",
+  "tooltip": "",
+  "order": 3,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "coolant",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": -40,
+  "max": 130,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 480,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000114",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. paliwa [°C] (SPN 174)",
+  "label": "Temp. paliwa [°C] (SPN 174)",
+  "tooltip": "",
+  "order": 4,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "fuelTemp",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": -40,
+  "max": 100,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 520,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000115",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. oleju [°C] (SPN 175)",
+  "label": "Temp. oleju [°C] (SPN 175)",
+  "tooltip": "",
+  "order": 5,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "oilTemp",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": -40,
+  "max": 150,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 560,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000116",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Ciśn. oleju [kPa] (SPN 100)",
+  "label": "Ciśn. oleju [kPa] (SPN 100)",
+  "tooltip": "",
+  "order": 6,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "oilPress",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 1000,
+  "step": 4,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 600,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000117",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Ciśn. płynu chł. [kPa] (SPN 109)",
+  "label": "Ciśn. płynu chł. [kPa] (SPN 109)",
+  "tooltip": "",
+  "order": 7,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "coolPress",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 300,
+  "step": 2,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 640,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000118",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Poziom płynu chł. [%] (SPN 111)",
+  "label": "Poziom płynu chł. [%] (SPN 111)",
+  "tooltip": "",
+  "order": 8,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "coolLevel",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 680,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000119",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Doładowanie [kPa] (SPN 102)",
+  "label": "Doładowanie [kPa] (SPN 102)",
+  "tooltip": "",
+  "order": 9,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "boost",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 400,
+  "step": 2,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 720,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011a",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. kolektora [°C] (SPN 105)",
+  "label": "Temp. kolektora [°C] (SPN 105)",
+  "tooltip": "",
+  "order": 10,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "imt",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": -40,
+  "max": 120,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 760,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011b",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. spalin [°C] (SPN 173)",
+  "label": "Temp. spalin [°C] (SPN 173)",
+  "tooltip": "",
+  "order": 11,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "egt",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 800,
+  "step": 5,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 800,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011c",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Zużycie paliwa [l/h] (SPN 183)",
+  "label": "Zużycie paliwa [l/h] (SPN 183)",
+  "tooltip": "",
+  "order": 12,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "fuelRate",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 0,
+  "max": 120,
+  "step": 0.5,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 840,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011d",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Akumulator [V] (SPN 168)",
+  "label": "Akumulator [V] (SPN 168)",
+  "tooltip": "",
+  "order": 13,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "battV",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 8,
+  "max": 32,
+  "step": 0.1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 880,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011e",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Ciśn. barometryczne [kPa] (SPN 108)",
+  "label": "Ciśn. barometryczne [kPa] (SPN 108)",
+  "tooltip": "",
+  "order": 14,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "baro",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": 80,
+  "max": 110,
+  "step": 0.5,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 920,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000011f",
+  "type": "ui-slider",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000108",
+  "name": "Temp. powietrza dolot. [°C] (SPN 172)",
+  "label": "Temp. powietrza dolot. [°C] (SPN 172)",
+  "tooltip": "",
+  "order": 15,
+  "width": 0,
+  "height": 0,
+  "passthru": false,
+  "outs": "end",
+  "topic": "airIn",
+  "topicType": "str",
+  "thumbLabel": "always",
+  "showTicks": "false",
+  "min": -20,
+  "max": 60,
+  "step": 1,
+  "className": "",
+  "iconPrepend": "",
+  "iconAppend": "",
+  "color": "",
+  "colorTrack": "",
+  "colorThumb": "",
+  "showTextField": true,
+  "x": 300,
+  "y": 960,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000120",
+  "type": "ui-gauge",
+  "z": "f0a1000000000001",
+  "name": "Obroty",
+  "group": "f0a1000000000106",
+  "order": 1,
+  "width": 3,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "needle",
+  "title": "Obroty",
+  "alwaysShowTitle": false,
+  "floatingTitlePosition": "top-left",
+  "units": "rpm",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": 0,
+    "color": "#5cd65c"
+   },
+   {
+    "from": 3600,
+    "color": "#ffc800"
+   },
+   {
+    "from": 3900,
+    "color": "#ea5353"
+   }
+  ],
+  "min": 0,
+  "max": 4000,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 1150,
+  "y": 340,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000121",
+  "type": "ui-gauge",
+  "z": "f0a1000000000001",
+  "name": "Płyn chłodzący",
+  "group": "f0a1000000000106",
+  "order": 2,
+  "width": 3,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "needle",
+  "title": "Płyn chłodzący",
+  "alwaysShowTitle": false,
+  "floatingTitlePosition": "top-left",
+  "units": "°C",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": 0,
+    "color": "#5cd65c"
+   },
+   {
+    "from": 95,
+    "color": "#ffc800"
+   },
+   {
+    "from": 105,
+    "color": "#ea5353"
+   }
+  ],
+  "min": 0,
+  "max": 120,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 1150,
+  "y": 380,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000122",
+  "type": "ui-gauge",
+  "z": "f0a1000000000001",
+  "name": "Ciśnienie oleju",
+  "group": "f0a1000000000106",
+  "order": 3,
+  "width": 3,
+  "height": 3,
+  "gtype": "gauge-half",
+  "gstyle": "needle",
+  "title": "Ciśnienie oleju",
+  "alwaysShowTitle": false,
+  "floatingTitlePosition": "top-left",
+  "units": "kPa",
+  "icon": "",
+  "prefix": "",
+  "suffix": "",
+  "segments": [
+   {
+    "from": 0,
+    "color": "#ea5353"
+   },
+   {
+    "from": 100,
+    "color": "#ffc800"
+   },
+   {
+    "from": 150,
+    "color": "#5cd65c"
+   }
+  ],
+  "min": 0,
+  "max": 700,
+  "sizeThickness": 16,
+  "sizeGap": 4,
+  "sizeKeyThickness": 8,
+  "styleRounded": true,
+  "styleGlow": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 1150,
+  "y": 420,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000123",
+  "type": "ui-text",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000106",
+  "order": 4,
+  "width": 0,
+  "height": 0,
+  "name": "Motogodziny",
+  "label": "Motogodziny (HOURS, SPN 247)",
+  "format": "{{msg.payload}}",
+  "layout": "row-spread",
+  "style": false,
+  "font": "",
+  "fontSize": 16,
+  "color": "#717171",
+  "wrapText": false,
+  "className": "",
+  "value": "payload",
+  "valueType": "msg",
+  "x": 1150,
+  "y": 460,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000124",
+  "type": "ui-template",
+  "z": "f0a1000000000001",
+  "group": "f0a1000000000107",
+  "page": "",
+  "ui": "",
+  "name": "Tabela wartości",
+  "order": 1,
+  "width": 0,
+  "height": 0,
+  "head": "",
+  "format": "<template>\n  <table class=\"vp-tab\" v-if=\"Array.isArray(msg.payload)\">\n    <tr><th>PGN</th><th>SPN</th><th>Parametr</th><th>Wartość</th><th></th></tr>\n    <tr v-for=\"r in msg.payload\" :key=\"String(r[1]) + '-' + r[2]\">\n      <td>{{ r[0] }} ({{ r[1] }})</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td><td class=\"v\"><b>{{ r[4] }}</b></td><td>{{ r[5] }}</td>\n    </tr>\n  </table>\n  <div v-else>czekam na dane…</div>\n</template>\n<style>\n.vp-tab { width: 100%; border-collapse: collapse; font-size: 14px; }\n.vp-tab th, .vp-tab td { padding: 3px 6px; border-bottom: 1px solid #ddd; text-align: left; }\n.vp-tab td.v { text-align: right; }\n</style>",
+  "storeOutMessages": true,
+  "passthru": false,
+  "resendOnRefresh": true,
+  "templateScope": "local",
+  "className": "",
+  "x": 900,
+  "y": 420,
+  "wires": [
+   []
+  ]
+ },
+ {
+  "id": "f0a1000000000109",
+  "type": "function",
+  "z": "f0a1000000000001",
+  "name": "Silnik J1939 (model + harmonogram)",
+  "func": "// Inputs from the dashboard: msg.topic = parameter name, msg.payload = value\nconst s = context.get('s');\nif (!s) return null;\nconst t = msg.topic, v = msg.payload;\nif (['tx', 'engineOn', 'sweep', 'realistic', 'fault'].includes(t)) {\n  s[t] = (v === true || v === 'true' || v === 1);\n  // echo the applied state back to the switch (out 4 -> \"init widgetów\" -> switch input); switch has passthru off, so no loop\n  return [null, null, null, { topic: t, payload: s[t] }];\n}\nelse if (t === 'setHours') { const h = Number(v); if (!isNaN(h) && h >= 0) { s.hours = h; context.get('save')(); } }\nelse if (t in s.in) { const x = Number(v); if (!isNaN(x)) s.in[t] = x; }\nelse if (t === 'refresh') context.get('pushInputs')();\nreturn null;\n",
+  "outputs": 4,
+  "timeout": 0,
+  "noerr": 0,
+  "initialize": "// ===== Volvo Penta / J1939 engine simulator core (embedded into the Node-RED function node) =====\n// Pure JS, no Node-RED APIs. All frames: 29-bit extended ID, 8 bytes, little endian (Intel).\nconst SA = 0x00;                       // engine ECU source address\nconst RATED = 3800, IDLE = 700;        // rpm (typical Volvo Penta D4/D6 range)\nconst id = (prio, pgn) => (((prio & 7) << 26) | ((pgn & 0x3FFFF) << 8) | SA) >>> 0;\nconst clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));\n// raw = (phys - offset) / scale, clipped to the J1939 valid range (8-bit: 0..250, 16-bit: 0..64255, 32-bit: 0..4211081215)\nconst raw8  = (v, s, o = 0) => clamp(Math.round((v - o) / s), 0, 0xFA);\nconst raw16 = (v, s, o = 0) => clamp(Math.round((v - o) / s), 0, 0xFAFF);\nconst raw32 = (v, s, o = 0) => clamp(Math.round((v - o) / s), 0, 0xFAFFFFFF);\nconst ff = () => [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF];\nconst u16 = (d, i, r) => { d[i] = r & 0xFF; d[i + 1] = (r >>> 8) & 0xFF; };\nconst u32 = (d, i, r) => { d[i] = r & 0xFF; d[i + 1] = (r >>> 8) & 0xFF; d[i + 2] = (r >>> 16) & 0xFF; d[i + 3] = (r >>> 24) & 0xFF; };\n\n// name, prio, pgn, period ms, encoder(state) -> 8 bytes   (byte index below is 0-based; J1939 docs are 1-based)\nconst PGNS = [\n  { name: 'EEC1', prio: 3, pgn: 61444, period: 20, enc: s => { const d = ff();\n      d[1] = raw8(s.demandTq, 1, -125);          // SPN 512 driver's demand torque, byte 2, 1 %/bit, -125\n      d[2] = raw8(s.actualTq, 1, -125);          // SPN 513 actual engine torque,  byte 3, 1 %/bit, -125\n      u16(d, 3, raw16(s.rpm, 0.125));            // SPN 190 engine speed, bytes 4-5, 0.125 rpm/bit\n      return d; } },\n  { name: 'EEC2', prio: 3, pgn: 61443, period: 50, enc: s => { const d = ff();\n      d[1] = raw8(s.pedal, 0.4);                 // SPN 91 accel pedal position 1, byte 2, 0.4 %/bit\n      d[2] = raw8(s.load, 1);                    // SPN 92 percent load at current speed, byte 3, 1 %/bit\n      return d; } },\n  { name: 'LFE', prio: 6, pgn: 65266, period: 100, enc: s => { const d = ff();\n      u16(d, 0, raw16(s.fuelRate, 0.05));        // SPN 183 fuel rate, bytes 1-2, 0.05 L/h per bit\n      d[6] = raw8(s.pedal, 0.4);                 // SPN 51 throttle position, byte 7, 0.4 %/bit\n      return d; } },\n  { name: 'EFL_P1', prio: 6, pgn: 65263, period: 500, enc: s => { const d = ff();\n      d[3] = raw8(s.oilPress, 4);                // SPN 100 oil pressure, byte 4, 4 kPa/bit\n      d[6] = raw8(s.coolPress, 2);               // SPN 109 coolant pressure, byte 7, 2 kPa/bit\n      d[7] = raw8(s.coolLevel, 0.4);             // SPN 111 coolant level, byte 8, 0.4 %/bit\n      return d; } },\n  { name: 'IC1', prio: 6, pgn: 65270, period: 500, enc: s => { const d = ff();\n      d[1] = raw8(s.boost, 2);                   // SPN 102 intake manifold 1 (boost) pressure, byte 2, 2 kPa/bit\n      d[2] = raw8(s.imt, 1, -40);                // SPN 105 intake manifold 1 temp, byte 3, 1 C/bit, -40\n      u16(d, 5, raw16(s.egt, 0.03125, -273));    // SPN 173 exhaust gas temp, bytes 6-7, 0.03125 C/bit, -273\n      return d; } },\n  { name: 'ET1', prio: 6, pgn: 65262, period: 1000, enc: s => { const d = ff();\n      d[0] = raw8(s.coolant, 1, -40);            // SPN 110 coolant temp, byte 1, 1 C/bit, -40\n      d[1] = raw8(s.fuelTemp, 1, -40);           // SPN 174 fuel temp, byte 2, 1 C/bit, -40\n      u16(d, 2, raw16(s.oilTemp, 0.03125, -273));// SPN 175 oil temp 1, bytes 3-4, 0.03125 C/bit, -273\n      return d; } },\n  { name: 'AMB', prio: 6, pgn: 65269, period: 1000, enc: s => { const d = ff();\n      d[0] = raw8(s.baro, 0.5);                  // SPN 108 barometric pressure, byte 1, 0.5 kPa/bit\n      d[5] = raw8(s.airIn, 1, -40);              // SPN 172 engine air inlet temp, byte 6, 1 C/bit, -40\n      return d; } },\n  { name: 'VEP1', prio: 6, pgn: 65271, period: 1000, enc: s => { const d = ff();\n      u16(d, 4, raw16(s.battV, 0.05));           // SPN 168 battery potential, bytes 5-6, 0.05 V/bit\n      return d; } },\n  { name: 'HOURS', prio: 6, pgn: 65253, period: 1000, enc: s => { const d = ff();\n      u32(d, 0, raw32(s.hours, 0.05));           // SPN 247 total engine hours, bytes 1-4, 0.05 h/bit\n      u32(d, 4, raw32(s.revs, 1000));            // SPN 249 total revolutions, bytes 5-8, 1000 r/bit\n      return d; } },\n  { name: 'DM1', prio: 6, pgn: 65226, period: 1000, enc: s => {\n      if (!s.fault) return [0x00, 0xFF, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF];   // no active DTC, lamps off\n      const spn = 100, fmi = 1, oc = 1;            // SPN 100 FMI 1 = oil pressure below normal (most severe)\n      return [0x10, 0xFF,                          // byte1: red stop lamp ON (bits 5-6 = 01); byte2: flash n/a\n              spn & 0xFF, (spn >>> 8) & 0xFF,      // DTC bytes 3-4: SPN bits 1-16\n              (((spn >>> 16) & 0x07) << 5) | (fmi & 0x1F), // byte5: SPN bits 17-19 (bits 6-8), FMI (bits 1-5)\n              oc & 0x7F,                           // byte6: CM=0 (bit 8), occurrence count (bits 1-7)\n              0xFF, 0xFF]; } },\n];\nPGNS.forEach(p => { p.id = id(p.prio, p.pgn); });\n\nfunction defaultState() {\n  return {\n    tx: true, engineOn: false, sweep: false, realistic: true, fault: false,\n    // manual inputs (sliders)\n    in: { rpm: 1500, load: 40, pedal: 40, coolant: 80, fuelTemp: 35, oilTemp: 90, oilPress: 400, coolPress: 80,\n          coolLevel: 100, boost: 80, imt: 40, egt: 350, fuelRate: 12, battV: 14.2, baro: 101, airIn: 25 },\n    // simulated (sent) values\n    rpm: 0, load: 0, pedal: 0, demandTq: 0, actualTq: 0, coolant: 20, fuelTemp: 20, oilTemp: 20, oilPress: 0,\n    coolPress: 0, coolLevel: 100, boost: 0, imt: 25, egt: 25, fuelRate: 0, battV: 12.6, baro: 101, airIn: 25,\n    hours: 1234.5, revs: 1234.5 * 60 * 1500, sweepT: 0,\n  };\n}\n\nconst lag = (cur, target, tau, dt) => cur + (target - cur) * (1 - Math.exp(-dt / tau));\n\n// advance model by dt seconds\nfunction step(s, dt) {\n  const I = s.in;\n  // --- engine speed target\n  let rpmT = I.rpm;\n  if (s.sweep) {                      // triangle IDLE -> RATED -> IDLE, 60 s period\n    s.sweepT = (s.sweepT + dt) % 60;\n    const ph = s.sweepT / 30;\n    rpmT = IDLE + (RATED - IDLE) * (ph < 1 ? ph : 2 - ph);\n  }\n  if (!s.engineOn) rpmT = 0;\n  else if (s.realistic) rpmT = clamp(rpmT, IDLE, RATED + 200);   // a running engine can't go below idle\n  s.rpm = s.realistic ? lag(s.rpm, rpmT, 0.4, dt) : rpmT;\n  if (s.rpm < 1) s.rpm = 0;\n  const run = s.rpm > 0, n = s.rpm / RATED;\n\n  if (s.realistic) {\n    const amb = I.airIn;\n    const loadT = run ? clamp(100 * n * n, 5, 100) : 0;                // propeller law: torque ~ rpm^2\n    s.load = lag(s.load, loadT, 0.5, dt);\n    s.pedal = run ? clamp((rpmT - IDLE) / (RATED - IDLE) * 100, 0, 100) : 0;\n    s.actualTq = s.load; s.demandTq = run ? clamp(s.load + 2, 0, 125) : 0;\n    s.coolant = lag(s.coolant, run ? 80 + 6 * s.load / 100 : amb, run ? 240 : 1800, dt); // thermostat ~80 C\n    s.oilTemp = lag(s.oilTemp, run ? 85 + 25 * s.load / 100 : amb, run ? 420 : 2400, dt);\n    s.fuelTemp = lag(s.fuelTemp, run ? 35 + 15 * s.load / 100 : amb, 900, dt);\n    const opT = !run ? 0 : s.fault ? 40 : clamp(180 + 340 * (s.rpm - IDLE) / (RATED - IDLE) - 1.5 * (s.oilTemp - 85), 120, 600);\n    s.oilPress = lag(s.oilPress, opT, 0.3, dt);\n    s.coolPress = run ? clamp(10 + 1.1 * (s.coolant - amb), 0, 120) : lag(s.coolPress, 0, 600, dt);\n    s.coolLevel = I.coolLevel;\n    s.boost = lag(s.boost, run ? 220 * Math.pow(s.load / 100, 1.5) * n + 2 : 0, 1.0, dt);  // kPa (gauge)\n    s.imt = lag(s.imt, amb + 8 + 0.12 * s.boost, 20, dt);\n    s.egt = lag(s.egt, run ? 180 + 4.2 * s.load : amb, run ? 8 : 120, dt);\n    s.fuelRate = run ? 1.2 + 60 * (s.load / 100) * n : 0;                  // L/h, ~60 L/h at rated (D4-300 class)\n    s.battV = lag(s.battV, run ? 14.2 : 12.6, 5, dt);\n    s.baro = I.baro; s.airIn = amb;\n  } else {\n    Object.assign(s, { load: I.load, pedal: I.pedal, actualTq: I.load, demandTq: I.load, coolant: I.coolant,\n      fuelTemp: I.fuelTemp, oilTemp: I.oilTemp, oilPress: s.fault ? 40 : I.oilPress, coolPress: I.coolPress,\n      coolLevel: I.coolLevel, boost: I.boost, imt: I.imt, egt: I.egt, fuelRate: I.fuelRate, battV: I.battV,\n      baro: I.baro, airIn: I.airIn });\n    if (!run) { s.load = s.pedal = s.actualTq = s.demandTq = s.fuelRate = 0; }\n  }\n  if (run) { s.hours += dt / 3600; s.revs += s.rpm * dt / 60; }   // hours only while rpm > 0\n}\n\nfunction frame(p, s) {\n  return { canfd: false, ext: true, rtr: false, canid: p.id, dlc: 8, data: p.enc(s) };\n}\n// ===== end of core =====\n\n// ===== Node-RED glue (On Start) =====\n// Engine hours are kept in flow context. Store 'file' = persistent (see README), falls back to memory.\nconst STORE = (env.get('VP_STORE') || 'file');\nconst s = defaultState();\nlet saved;\ntry { saved = flow.get('vp_engine', STORE); } catch (e) { saved = undefined; }\nif (saved && typeof saved.hours === 'number') { s.hours = saved.hours; s.revs = saved.revs || s.revs; }\nelse { const h0 = Number(env.get('VP_START_HOURS') || 1234.5); if (!isNaN(h0) && h0 >= 0) s.hours = h0; }\ncontext.set('s', s);\nconst save = () => { try { flow.set('vp_engine', { hours: s.hours, revs: s.revs }, STORE); } catch (e) { flow.set('vp_engine', { hours: s.hours, revs: s.revs }); } };\ncontext.set('save', save);\n\nconst UI_KEYS = ['rpm','load','pedal','coolant','fuelTemp','oilTemp','oilPress','coolPress','coolLevel','boost','imt','egt','fuelRate','battV','baro','airIn'];\nconst NOUT = 4;\nconst out = (i, m) => { const a = new Array(NOUT).fill(null); a[i] = m; node.send(a); };\n// push current settings to the dashboard widgets once at start (sliders/switches show the real state)\nconst pushInputs = () => {\n  const msgs = [];\n  for (const k of UI_KEYS) msgs.push({ topic: k, payload: s.in[k] });\n  for (const k of ['tx','engineOn','sweep','realistic','fault']) msgs.push({ topic: k, payload: s[k] });\n  msgs.push({ topic: 'setHours', payload: +s.hours.toFixed(2) });\n  const a = new Array(NOUT).fill(null); a[3] = msgs; node.send(a);\n};\nsetTimeout(pushInputs, 1500);\ncontext.set('pushInputs', pushInputs);\n\nconst now0 = Date.now();\nPGNS.forEach((p, i) => { p.next = now0 + 5 * i; });     // small stagger\nlet last = now0, nextUi = now0, nextSave = now0 + 10000, sent = 0;\nconst timer = setInterval(() => {\n  const now = Date.now();\n  step(s, Math.min((now - last) / 1000, 1)); last = now;\n  if (s.tx) {\n    for (const p of PGNS) {\n      if (now >= p.next) {\n        out(0, { topic: p.name, payload: frame(p, s) }); sent++;\n        p.next += p.period; if (p.next <= now) p.next = now + p.period;   // no burst after a stall\n      }\n    }\n  }\n  if (now >= nextUi) {\n    nextUi = now + 500;\n    const r = (v, d) => +v.toFixed(d);\n    const rows = [\n      ['EEC1', 61444, 190, 'Obroty', r(s.rpm, 0), 'rpm'],\n      ['EEC1', 61444, 512, 'Moment zadany', r(s.demandTq, 0), '%'],\n      ['EEC1', 61444, 513, 'Moment rzeczywisty', r(s.actualTq, 0), '%'],\n      ['EEC2', 61443, 91, 'Pedał / manetka', r(s.pedal, 1), '%'],\n      ['EEC2', 61443, 92, 'Obciążenie', r(s.load, 0), '%'],\n      ['ET1', 65262, 110, 'Temp. płynu chł.', r(s.coolant, 0), '°C'],\n      ['ET1', 65262, 174, 'Temp. paliwa', r(s.fuelTemp, 0), '°C'],\n      ['ET1', 65262, 175, 'Temp. oleju', r(s.oilTemp, 1), '°C'],\n      ['EFL/P1', 65263, 100, 'Ciśn. oleju', r(s.oilPress, 0), 'kPa'],\n      ['EFL/P1', 65263, 109, 'Ciśn. płynu chł.', r(s.coolPress, 0), 'kPa'],\n      ['EFL/P1', 65263, 111, 'Poziom płynu chł.', r(s.coolLevel, 0), '%'],\n      ['IC1', 65270, 102, 'Doładowanie', r(s.boost, 0), 'kPa'],\n      ['IC1', 65270, 105, 'Temp. kolektora dol.', r(s.imt, 0), '°C'],\n      ['IC1', 65270, 173, 'Temp. spalin', r(s.egt, 0), '°C'],\n      ['LFE', 65266, 183, 'Zużycie paliwa', r(s.fuelRate, 2), 'l/h'],\n      ['VEP1', 65271, 168, 'Napięcie akumulatora', r(s.battV, 2), 'V'],\n      ['AMB', 65269, 108, 'Ciśn. barometryczne', r(s.baro, 1), 'kPa'],\n      ['AMB', 65269, 172, 'Temp. powietrza dolot.', r(s.airIn, 0), '°C'],\n      ['HOURS', 65253, 247, 'Motogodziny', r(s.hours, 2), 'h'],\n      ['DM1', 65226, 100, 'Aktywny błąd', s.fault ? 'SPN 100 FMI 1' : 'brak', ''],\n    ];\n    const a = new Array(NOUT).fill(null);\n    a[1] = { payload: rows, topic: 'table' };\n    a[2] = [{ topic: 'rpm', payload: Math.round(s.rpm) }, { topic: 'coolant', payload: Math.round(s.coolant) },\n            { topic: 'oilPress', payload: Math.round(s.oilPress) }, { topic: 'hours', payload: s.hours.toFixed(2) + ' h' }];\n    node.send(a);\n    node.status({ fill: s.tx ? (s.rpm > 0 ? 'green' : 'yellow') : 'grey', shape: 'dot',\n      text: (s.tx ? 'TX ' : 'TX off ') + Math.round(s.rpm) + ' rpm, ' + s.hours.toFixed(2) + ' h, ramek: ' + sent });\n  }\n  if (now >= nextSave) { nextSave = now + 10000; save(); }\n}, 10);\ncontext.set('timer', timer);\n",
+  "finalize": "clearInterval(context.get('timer'));\nconst save = context.get('save'); if (save) save();\n",
+  "libs": [],
+  "x": 560,
+  "y": 300,
+  "outputLabels": [
+   "ramki CAN",
+   "tabela",
+   "gauge/tekst",
+   "init widgetów"
+  ],
+  "wires": [
+   [
+    "f0a1000000000127",
+    "f0a1000000000128"
+   ],
+   [
+    "f0a1000000000124"
+   ],
+   [
+    "f0a1000000000125"
+   ],
+   [
+    "f0a1000000000126"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000127",
+  "type": "socketcan-in",
+  "z": "f0a1000000000001",
+  "name": "CAN TX (socketcan-in)",
+  "config": "f0a1000000000101",
+  "x": 900,
+  "y": 260,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000128",
+  "type": "debug",
+  "z": "f0a1000000000001",
+  "name": "podgląd ramek",
+  "active": false,
+  "tosidebar": true,
+  "console": false,
+  "tostatus": false,
+  "complete": "payload",
+  "targetType": "msg",
+  "statusVal": "",
+  "statusType": "auto",
+  "x": 900,
+  "y": 300,
+  "wires": []
+ },
+ {
+  "id": "f0a1000000000125",
+  "type": "switch",
+  "z": "f0a1000000000001",
+  "name": "po topic",
+  "property": "topic",
+  "propertyType": "msg",
+  "rules": [
+   {
+    "t": "eq",
+    "v": "rpm",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "coolant",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "oilPress",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "hours",
+    "vt": "str"
+   }
+  ],
+  "checkall": "false",
+  "repair": false,
+  "outputs": 4,
+  "x": 900,
+  "y": 360,
+  "wires": [
+   [
+    "f0a1000000000120"
+   ],
+   [
+    "f0a1000000000121"
+   ],
+   [
+    "f0a1000000000122"
+   ],
+   [
+    "f0a1000000000123"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000126",
+  "type": "switch",
+  "z": "f0a1000000000001",
+  "name": "init widgetów po topic",
+  "property": "topic",
+  "propertyType": "msg",
+  "rules": [
+   {
+    "t": "eq",
+    "v": "tx",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "engineOn",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "realistic",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "sweep",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "fault",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "rpm",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "setHours",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "load",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "pedal",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "coolant",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "fuelTemp",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "oilTemp",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "oilPress",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "coolPress",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "coolLevel",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "boost",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "imt",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "egt",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "fuelRate",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "battV",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "baro",
+    "vt": "str"
+   },
+   {
+    "t": "eq",
+    "v": "airIn",
+    "vt": "str"
+   }
+  ],
+  "checkall": "false",
+  "repair": false,
+  "outputs": 22,
+  "x": 300,
+  "y": 520,
+  "wires": [
+   [
+    "f0a100000000010a"
+   ],
+   [
+    "f0a100000000010b"
+   ],
+   [
+    "f0a100000000010c"
+   ],
+   [
+    "f0a100000000010d"
+   ],
+   [
+    "f0a100000000010e"
+   ],
+   [
+    "f0a100000000010f"
+   ],
+   [
+    "f0a1000000000110"
+   ],
+   [
+    "f0a1000000000111"
+   ],
+   [
+    "f0a1000000000112"
+   ],
+   [
+    "f0a1000000000113"
+   ],
+   [
+    "f0a1000000000114"
+   ],
+   [
+    "f0a1000000000115"
+   ],
+   [
+    "f0a1000000000116"
+   ],
+   [
+    "f0a1000000000117"
+   ],
+   [
+    "f0a1000000000118"
+   ],
+   [
+    "f0a1000000000119"
+   ],
+   [
+    "f0a100000000011a"
+   ],
+   [
+    "f0a100000000011b"
+   ],
+   [
+    "f0a100000000011c"
+   ],
+   [
+    "f0a100000000011d"
+   ],
+   [
+    "f0a100000000011e"
+   ],
+   [
+    "f0a100000000011f"
+   ]
+  ]
+ },
+ {
+  "id": "f0a1000000000129",
+  "type": "inject",
+  "z": "f0a1000000000001",
+  "name": "odśwież widgety",
+  "props": [
+   {
+    "p": "topic",
+    "vt": "str"
+   }
+  ],
+  "repeat": "",
+  "crontab": "",
+  "once": false,
+  "onceDelay": 0.1,
+  "topic": "refresh",
+  "x": 300,
+  "y": 300,
+  "wires": [
+   [
+    "f0a1000000000109"
+   ]
+  ]
+ },
+ {
+  "id": "f0a100000000012a",
+  "type": "comment",
+  "z": "f0a1000000000001",
+  "name": "Interfejs CAN = zmienna środowiskowa CAN_IF (domyślnie can0); VP_START_HOURS = motogodziny startowe",
+  "info": "CAN_IF ustawiasz w docker-compose (.env) albo przed startem: CAN_IF=vcan0 node-red. Można też nadpisać VP_CAN_IF we właściwościach zakładki (Edit flow → Environment).",
+  "x": 320,
+  "y": 80,
+  "wires": []
+ }
+]

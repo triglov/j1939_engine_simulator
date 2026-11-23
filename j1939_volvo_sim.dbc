@@ -1,0 +1,98 @@
+VERSION ""
+
+NS_ :
+
+BS_:
+
+BU_: ENGINE
+
+BO_ 2364539904 EEC1: 8 ENGINE
+ SG_ DriversDemandEngPercentTorque : 8|8@1+ (1,-125) [-125|130] "%" Vector__XXX
+ SG_ ActualEngPercentTorque : 16|8@1+ (1,-125) [-125|130] "%" Vector__XXX
+ SG_ EngSpeed : 24|16@1+ (0.125,0) [0|8191.88] "rpm" Vector__XXX
+
+BO_ 2364539648 EEC2: 8 ENGINE
+ SG_ AccelPedalPos1 : 8|8@1+ (0.4,0) [0|102] "%" Vector__XXX
+ SG_ EngPercentLoadAtCurrentSpeed : 16|8@1+ (1,0) [0|255] "%" Vector__XXX
+
+BO_ 2566844928 LFE1: 8 ENGINE
+ SG_ EngFuelRate : 0|16@1+ (0.05,0) [0|3276.75] "l/h" Vector__XXX
+ SG_ EngThrottleValve1Pos1 : 48|8@1+ (0.4,0) [0|102] "%" Vector__XXX
+
+BO_ 2566844160 EFL_P1: 8 ENGINE
+ SG_ EngOilPress : 24|8@1+ (4,0) [0|1020] "kPa" Vector__XXX
+ SG_ EngCoolantPress : 48|8@1+ (2,0) [0|510] "kPa" Vector__XXX
+ SG_ EngCoolantLevel : 56|8@1+ (0.4,0) [0|102] "%" Vector__XXX
+
+BO_ 2566845952 IC1: 8 ENGINE
+ SG_ EngIntakeManifold1Press : 8|8@1+ (2,0) [0|510] "kPa" Vector__XXX
+ SG_ EngIntakeManifold1Temp : 16|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+ SG_ EngExhaustGasTemp : 40|16@1+ (0.03125,-273) [-273|1774.97] "degC" Vector__XXX
+
+BO_ 2566843904 ET1: 8 ENGINE
+ SG_ EngCoolantTemp : 0|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+ SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+ SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [-273|1774.97] "degC" Vector__XXX
+
+BO_ 2566845696 AMB: 8 ENGINE
+ SG_ BarometricPress : 0|8@1+ (0.5,0) [0|127.5] "kPa" Vector__XXX
+ SG_ EngAirIntakeTemp : 40|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+
+BO_ 2566846208 VEP1: 8 ENGINE
+ SG_ BatteryPotential_PowerInput1 : 32|16@1+ (0.05,0) [0|3276.75] "V" Vector__XXX
+
+BO_ 2566841600 HOURS: 8 ENGINE
+ SG_ EngTotalHoursOfOperation : 0|32@1+ (0.05,0) [0|2.14748e+08] "h" Vector__XXX
+ SG_ EngTotalRevolutions : 32|32@1+ (1000,0) [0|4.29497e+12] "r" Vector__XXX
+
+BO_ 2566834688 DM1: 8 ENGINE
+ SG_ RedStopLampStatus : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ AmberWarningLampStatus : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ DTC1_SPN : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ DTC1_SPN_High : 37|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ DTC1_FMI : 32|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ DTC1_OccuranceCount : 40|7@1+ (1,0) [0|127] "" Vector__XXX
+
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_  "ProtocolType" STRING ;
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "VFrameFormat" "J1939PG";
+BA_DEF_DEF_  "ProtocolType" "J1939";
+BA_ "ProtocolType" "J1939";
+BA_ "VFrameFormat" BO_ 2364539904 3;
+BA_ "VFrameFormat" BO_ 2364539648 3;
+BA_ "VFrameFormat" BO_ 2566844928 3;
+BA_ "VFrameFormat" BO_ 2566844160 3;
+BA_ "VFrameFormat" BO_ 2566845952 3;
+BA_ "VFrameFormat" BO_ 2566843904 3;
+BA_ "VFrameFormat" BO_ 2566845696 3;
+BA_ "VFrameFormat" BO_ 2566846208 3;
+BA_ "VFrameFormat" BO_ 2566841600 3;
+BA_ "VFrameFormat" BO_ 2566834688 3;
+BA_ "SPN" SG_ 2364539904 DriversDemandEngPercentTorque 512;
+BA_ "SPN" SG_ 2364539904 ActualEngPercentTorque 513;
+BA_ "SPN" SG_ 2364539904 EngSpeed 190;
+BA_ "SPN" SG_ 2364539648 AccelPedalPos1 91;
+BA_ "SPN" SG_ 2364539648 EngPercentLoadAtCurrentSpeed 92;
+BA_ "SPN" SG_ 2566844928 EngFuelRate 183;
+BA_ "SPN" SG_ 2566844928 EngThrottleValve1Pos1 51;
+BA_ "SPN" SG_ 2566844160 EngOilPress 100;
+BA_ "SPN" SG_ 2566844160 EngCoolantPress 109;
+BA_ "SPN" SG_ 2566844160 EngCoolantLevel 111;
+BA_ "SPN" SG_ 2566845952 EngIntakeManifold1Press 102;
+BA_ "SPN" SG_ 2566845952 EngIntakeManifold1Temp 105;
+BA_ "SPN" SG_ 2566845952 EngExhaustGasTemp 173;
+BA_ "SPN" SG_ 2566843904 EngCoolantTemp 110;
+BA_ "SPN" SG_ 2566843904 EngFuelTemp1 174;
+BA_ "SPN" SG_ 2566843904 EngOilTemp1 175;
+BA_ "SPN" SG_ 2566845696 BarometricPress 108;
+BA_ "SPN" SG_ 2566845696 EngAirIntakeTemp 172;
+BA_ "SPN" SG_ 2566846208 BatteryPotential_PowerInput1 168;
+BA_ "SPN" SG_ 2566841600 EngTotalHoursOfOperation 247;
+BA_ "SPN" SG_ 2566841600 EngTotalRevolutions 249;
+BA_ "SPN" SG_ 2566834688 RedStopLampStatus 623;
+BA_ "SPN" SG_ 2566834688 AmberWarningLampStatus 624;
+BA_ "SPN" SG_ 2566834688 DTC1_SPN 1214;
+BA_ "SPN" SG_ 2566834688 DTC1_FMI 1215;
+BA_ "SPN" SG_ 2566834688 DTC1_OccuranceCount 1216;
