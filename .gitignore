@@ -155,3 +155,13 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local artefacts
+*.tar.gz
+*- Copy.json
